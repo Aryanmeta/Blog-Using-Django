@@ -1,0 +1,56 @@
+{% extends '_base.html' %}
+{% block title %}Post Detail{% endblock title %}
+{% block body %}
+        <div class="container mt-4">
+        <div class="row">
+            <div class="col-9">
+                <div class="card shadow my-3 p-5">
+                    <h1>{{ post_detail.title }}</h1>
+                    <p class="mt-2">{{ post_detail.text }}</p>
+                    <p class="small text-muted mt-2">By: {{ post_detail.author }}</p>
+                    <div>
+                        <a href="{% url 'post_update' post_detail.id %}" class="btn btn-sm btn-warning">Update</a>
+                        <a href="{% url 'post_delete' post_detail.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+                <div class="card shadow my-3 p-5">
+                    <h3>Comments:</h3>
+                    No comments yet! Be the first one.
+                </div>
+                <div class="card shadow my-3 p-5">
+                    <h3>Add new comment:</h3>
+                    <form method="POST">
+                        <div class="form-group py-2">
+                            <label class="py-1" for="author_name">Enter your name:</label>
+                            <input type="text" class="form-control" placeholder="e.g. John Doe" name="author_name">
+                        </div>
+                        <div class="form-group py-2">
+                            <label class="py-1" for="email">Your Email:</label>
+                            <input type="email" class="form-control" placeholder="example@gmail.com" name="email">
+                        </div>
+                        <div class="form-group py-2">
+                            <label class="py-1" for="comment_text">Comment text:</label>
+                            <textarea class="form-control" name="text" rows="3"
+                                      placeholder="Enter your comment text here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card my-4">
+                    <h5 class="card-header">About</h5>
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted small py-2">datatime_modified
+                                : {{ post_detail.datatime_modified }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted small py-2">Data Time Modified
+                                : {{ post_detail.datatime_modified }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted small py-2">Status (Published |OR| Draft)
+                                : {{ post_detail.status }}</h6>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock body %}

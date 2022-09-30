@@ -1,0 +1,38 @@
+{% extends '_base.html' %}
+{% block title %}Post List{% endblock title %}
+{% block body %}
+
+    <div class="container mt-4">
+        <div class="row">
+            {% for element in posts_list %}
+                <div class="col-9">
+                    <div class="card shadow-sm my-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ element.title }}</h5>
+                            <p class="card-text py-3">
+                                {{ element.text }}
+                            </p>
+                            <h6 class="card-subtitle mb-2 text-muted small py-2">Author : {{ element.author }}</h6>
+                             <h6 class="card-subtitle mb-2 text-muted small py-2">Data Time Created
+                                : {{ element.datetime_created }}</h6>
+                            <a href="{% url 'post_detail' element.id %}" class="btn btn-sm btn-success">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card my-4">
+                        <h5 class="card-header">About</h5>
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted small py-2">Data Time Created
+                                : {{ element.datetime_created }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted small py-2">Data Time Modified
+                                : {{ element.datatime_modified }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted small py-2">Status (Published |OR| Draft)
+                                : {{ element.status }}</h6>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}
