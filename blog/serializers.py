@@ -1,6 +1,8 @@
 from rest_framework import serializers
-from . models import 
+from . models import Post
 
 
-class OrderingSerializer(serializers.ModelSerializer):
+class PostSerializer(serializers.ModelSerializer):
     class Meta:
+        model = Post
+        fields = ('title','text','author','datetime_created','status')   
