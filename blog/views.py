@@ -4,6 +4,10 @@ from django.urls import reverse_lazy
 from .models import Post
 from .form import NewPostForm
 
+from .serializers import PostSerializer
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+
 
 class PostListView(generic.ListView):
     template_name = 'blog/post_list.html'
@@ -34,3 +38,20 @@ class DeletePostView(generic.DeleteView):
     model = Post
     template_name = 'blog/post_delete.html'
     success_url = reverse_lazy('post_list')
+
+
+#apis
+
+class PostListApiView(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class  = PostSerializer
+
+class UpdatePostApiView (generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+class CreatePostApiView(generics.CreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
